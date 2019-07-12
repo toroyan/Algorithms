@@ -11,15 +11,16 @@
 
 //Task1
 
-int decToBinfunc(int a){
+void decToBinfunc(int a){
    
   int b = a%2;
-    
+  char p[100];
+  sprintf(p, "%d", b);
     if (a>0){
         
     decToBinfunc(a/2);
      
-   printf("%d",b);
+   printf("%d",*p);
         
     }
    
@@ -35,9 +36,7 @@ int oddEvenPowerRec(int a,int b){
     if (b==0){
         return 1;
     }
-    if (b==1){
-        return a;
-    }
+   
     if (b % 2 == 0) {
         k  = oddEvenPowerRec(a, b / 2);
         return k * k;
