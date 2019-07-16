@@ -9,6 +9,34 @@
 #include <stdio.h>
 
 
+//LESSON4
+
+//Task3
+
+int binarySearch(int*arr,int len,int v,int i){
+   
+    int m = (i+(len-1))/2;
+    if(i>(len-1)){
+        return -1;
+    }
+    if(arr[m]==v){
+        return m;
+    }
+    if(arr[m]>v){
+        return binarySearch(arr, m, v,i);
+    }
+    else {
+        return binarySearch(arr, len, v, m+1);
+    }
+    
+    return 0;
+}
+
+
+
+
+
+
 //LESSON3
 
 //Task1
@@ -148,12 +176,12 @@ int main(int argc, const char * argv[]) {
     int arr[SIZE];
     for(int i = 0;i<SIZE;i++){
         arr[i] = rand() % 100;
-        printf("%d\n",arr[i]);
+      //  printf("%d\n",arr[i]);
     }
-    printf("\n");
-    printf("the count of buble  sorting operations is: %d\n",bubbleFunc(arr, SIZE));
-    printf("the count of insertion sorting operations is: %d\n",insertionSortFunc(arr, SIZE));
-    printf("The index of the number is: %d\n", linearRecFunc(arr,SIZE,58));
+   // printf("\n");
+   // printf("the count of buble  sorting operations is: %d\n",bubbleFunc(arr, SIZE));
+   // printf("the count of insertion sorting operations is: %d\n",insertionSortFunc(arr, SIZE));
+   // printf("The index of the number is: %d\n", linearRecFunc(arr,SIZE,58));
     
     
     int *p;
@@ -162,7 +190,7 @@ int main(int argc, const char * argv[]) {
         printf("%d\n", *(p+i));
     }
     
-    
+    printf("Binary search: The indes is %d\n",binarySearch(arr, SIZE,73,0));
     
     //decToBinfunc(5);
    // printf("%d\n",oddEvenPowerRec(6,3));
