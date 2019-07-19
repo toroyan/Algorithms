@@ -7,6 +7,94 @@
 //
 
 #include <stdio.h>
+#include <math.h>
+#include <string.h>
+#include <stdlib.h>
+
+
+
+//Lesson5
+
+
+#define T int
+#define Size 100
+#define C char
+int ind = -1;
+int j = -1;
+int m = -1;
+int n = 0;
+int z=0;
+T Stack[Size];
+C St[Size];
+C Queue[Size];
+
+//TASK1
+void binaryPush (T i){
+    int n=i/2;
+    
+    Stack[++ind] = i%2;
+    while(n>=2){
+        int m=n%2;
+        Stack[++ind] = m;
+        n = n/2;
+    }
+    Stack[++ind] = n;
+    
+}
+T binaryPop (){
+    if(ind != -1){
+        return Stack[ind--];
+    }
+    return 0;
+}
+
+
+//TASK2
+void push(C a){
+    
+    St[++j] = a;
+}
+
+C pop (){
+    
+    if (j!=-1){
+        
+        return St[j--];
+    }
+    return 0;
+    
+}
+
+
+//TASK3
+void enqueue (C a) {
+    if (m< Size){
+        m=m+1;
+        Queue[m] = a;
+        
+    }
+}
+
+C dequeue (){
+    m= m-m+z;
+    if (m<Size){
+        z=z+1;
+        return Queue[m];
+    }
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //LESSON4
@@ -172,28 +260,87 @@ int oddEvenPowerRec(int a,int b){
 
 int main(int argc, const char * argv[]) {
     
-    const int SIZE = 5;
-    int arr[SIZE];
-    for(int i = 0;i<SIZE;i++){
-        arr[i] = rand() % 100;
+   // const int SIZE = 5;
+  //  int arr[SIZE];
+  //  for(int i = 0;i<SIZE;i++){
+       // arr[i] = rand() % 100;
       //  printf("%d\n",arr[i]);
     }
    // printf("\n");
    // printf("the count of buble  sorting operations is: %d\n",bubbleFunc(arr, SIZE));
    // printf("the count of insertion sorting operations is: %d\n",insertionSortFunc(arr, SIZE));
    // printf("The index of the number is: %d\n", linearRecFunc(arr,SIZE,58));
-    
-    
-    int *p;
-    p = sheikSortFunc(arr, SIZE);
-    for(int i =0; i<SIZE;i++){
-        printf("%d\n", *(p+i));
-    }
-    
-    printf("Binary search: The indes is %d\n",binarySearch(arr, SIZE,73,0));
-    
+    //int *p;
+   // p = sheikSortFunc(arr, SIZE);
+   // for(int i =0; i<SIZE;i++){
+      //  printf("%d\n", *(p+i));
+   // }
+   // printf("Binary search: The indes is %d\n",binarySearch(arr, SIZE,73,0));
     //decToBinfunc(5);
    // printf("%d\n",oddEvenPowerRec(6,3));
+
+
+binaryPush(4);
+while (ind != -1) {
+    printf("%d",binaryPop());
+}
+printf("\n");
+
+char a [Size];
+int i;
+int l=-1;
+int k=0;
+printf ("Enter the expression ");
+scanf("%s",a);
+
+for (i=0; a[i] != '\0';i++){
     
+    if (a[i] == '(' || a[i] == '[' || a[i] == '{'){
+        push(a[i]);
+        k=k+1;
+        
+    }
+    else if (a[i] == ')' || a[i] == ']' || a[i] == '}') {
+        if(j ==-1){
+            printf("The are not an opening brackets\n");
+            return 0;
+        }
+        
+        char b = pop();
+        if (((a[i] == ')' ) && (b == '(')) || ((a[i] == ']') && (b == '['))||((a[i] == '}' )&& (b == '{'))){
+            if (l==-1){
+                l = l+2;
+            }
+            else{
+                l=l+1;
+            }
+            
+        }
+    }
+    
+}
+if (k==l){
+    printf("balanced paranthesis\n");
+}
+else if (k==0 && l==-1){
+    
+    printf("There are no any brackets\n");
+}
+else {
+    printf("not balanced paranthesis\n");
+}
+
+
+enqueue('a');
+enqueue('b');
+enqueue('c');
+enqueue('d');
+enqueue('e');
+
+n=m;
+while(m<=n){
+    printf("%c",dequeue());
+}
+
     return 0;
 }
