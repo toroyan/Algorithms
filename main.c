@@ -12,6 +12,94 @@
 #include <stdlib.h>
 
 
+//Lesson6
+
+typedef struct Node{
+    int data;
+    struct Node *left;
+    struct Node *right;
+    
+    
+} Node;
+
+//Task1
+int hashFunc(char *string){
+    int i=0;
+    
+    int sum =0;
+    
+    for(i=0;i<strlen(string);i++){
+        sum = sum + string[i];
+    }
+    return sum;
+}
+
+
+
+
+//Task2.1
+void balancedOrder(Node *root){
+    if(root){
+        balancedOrder(root->left);
+        printf("%d",root->data);
+        balancedOrder(root->right);
+    }
+}
+
+
+//Task2.1
+void leftRightRoot(Node *root){
+    if(root){
+        leftRightRoot(root->left);
+        leftRightRoot(root->right);
+        printf("%d",root->data);
+    }
+}
+
+//Task2.2
+Node * searchBinaryTree(int value,Node *root){
+    if(root == NULL){
+        return 0;
+    }
+    
+    else  if (root ->data < value){
+        return searchBinaryTree(value, root->right);
+    }
+    else if (root ->data > value){
+    
+        return searchBinaryTree(value, root->left);
+    }
+    else
+    return root;
+}
+
+Node * createNode(int value){
+    Node* temp =(Node*) malloc(sizeof(Node));
+    temp->data = value;
+    temp->right = NULL;
+    temp->left = NULL;
+    
+    return temp;
+}
+//Task2.3
+Node * addNode(int value,Node *root){
+    
+    if(root == NULL){
+        root = createNode(value);
+        
+    }
+    else if(value<=root->data){
+        root->left = addNode(value, root->left);
+        
+    }
+    else if(value>=root->data){
+        root->right = addNode(value, root->right);
+    }
+    return root;
+}
+
+
+
 
 //Lesson5
 
@@ -260,6 +348,38 @@ int oddEvenPowerRec(int a,int b){
 
 int main(int argc, const char * argv[]) {
     
+    printf("%d", hashFunc("hello"));
+    
+    printf("\n");
+    
+    struct Node *root = NULL;
+    root = addNode(5, root);
+    addNode(7, root);
+    addNode(4, root);
+    addNode(1, root);
+    addNode(6,root);
+    
+    balancedOrder(root);
+    
+    printf("\n");
+    
+    leftRightRoot(root);
+    
+    printf("\n");
+    
+    if (searchBinaryTree(4, root)){
+        printf("The value is in the binary tree");
+    }
+    else {
+        printf("Couldn't find the value");
+    }
+    
+    printf("\n");
+
+    
+    return 0;
+    
+    
    // const int SIZE = 5;
   //  int arr[SIZE];
   //  for(int i = 0;i<SIZE;i++){
@@ -280,8 +400,8 @@ int main(int argc, const char * argv[]) {
    // printf("%d\n",oddEvenPowerRec(6,3));
 
 
-binaryPush(4);
-while (ind != -1) {
+//binaryPush(4);
+/*while (ind != -1) {
     printf("%d",binaryPop());
 }
 printf("\n");
@@ -340,7 +460,10 @@ enqueue('e');
 n=m;
 while(m<=n){
     printf("%c",dequeue());
-}
+}*/
 
-    return 0;
+
+
+
+
 }
